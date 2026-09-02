@@ -16,6 +16,7 @@ export default function Layout({ children, title, description }) {
         <meta name="description" content={description || SITE_DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="google-site-verification" content="siVuAlWtY2uDcJtA_iRN1aO8huUyJsADHnEGHCoYQJ0" />
       </Head>
 
       <header className="border-b border-line">
