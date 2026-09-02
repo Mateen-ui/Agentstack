@@ -1,6 +1,6 @@
 import { getSortedPostsData } from "../lib/posts";
 
-const SITE_URL = "https://your-domain.com";
+const SITE_URL = "https://agentstack-vert.vercel.app";
 
 function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
