@@ -2,6 +2,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import Layout from "../components/Layout";
 import { getSortedPostsData } from "../lib/posts";
+import FieldNotesCubes from "../components/FieldNotesCubes";
 
 export default function Home({ allPostsData }) {
   return (
@@ -44,6 +45,7 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
+            <FieldNotesCubes />
     </Layout>
   );
 }
