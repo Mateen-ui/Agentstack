@@ -1,4 +1,8 @@
-:root{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  :root{
     --ink:#0A0E14;
     --panel:#12161F;
     --panel-2:#171C27;
