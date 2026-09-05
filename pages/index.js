@@ -162,20 +162,20 @@ export default function Home() {
   ];
 
   // Field Notes: shorter dispatches on the layers of an agent stack.
-  // NOTE: hrefs are set to '#' as placeholders since these posts don't exist yet.
-  // Once you publish each one, point the href at its real /posts/<slug> URL —
-  // that's what actually gets these indexed and crawlable as separate pages.
+  // Each href below matches a published article — see /posts/<slug>.md in
+  // this delivery. Wire these slugs into your post-rendering route (or send
+  // Claude your existing pages/posts/[slug] template) to make them live.
   const fieldNotes = [
-    { tag: 'ARCHITECTURE', img: 'https://picsum.photos/id/180/900/600', title: 'The Anatomy of an Agent Stack', desc: "Model, memory, tools, and orchestration aren't separate products, they're layers that fail differently.", href: '#' },
-    { tag: 'MEMORY', img: 'https://picsum.photos/id/1005/900/600', title: 'Why Agents Need Long-Term Memory', desc: 'A context window is not a memory. The difference shows up the moment a user expects an agent to remember something.', href: '#' },
-    { tag: 'TOOL USE', img: 'https://picsum.photos/id/60/900/600', title: 'Tool Calling: Giving Agents Hands', desc: 'The gap between describing an action and taking it safely is mostly a schema-design problem.', href: '#' },
-    { tag: 'MULTI-AGENT', img: 'https://picsum.photos/id/1015/900/600', title: "When One Agent Isn't Enough", desc: 'Splitting work across agents buys specialization and parallelism, and buys back coordination overhead.', href: '#' },
-    { tag: 'OBSERVABILITY', img: 'https://picsum.photos/id/96/900/600', title: 'Watching Agents Think', desc: 'Logs tell you what an agent did. Traces tell you why. Most incidents live in that gap.', href: '#' },
-    { tag: 'SAFETY', img: 'https://picsum.photos/id/201/900/600', title: 'Guardrails Without Gridlock', desc: "Every constraint is a tax on capability. The job is the smallest set of rails that stops what matters.", href: '#' },
-    { tag: 'RETRIEVAL', img: 'https://picsum.photos/id/48/900/600', title: 'Agentic RAG vs. Traditional RAG', desc: 'Traditional RAG retrieves once and answers. Agentic RAG decides whether to retrieve again, and from where.', href: '#' },
-    { tag: 'EVALUATION', img: 'https://picsum.photos/id/119/900/600', title: 'Grading Agents on More Than Accuracy', desc: 'An agent that fails unpredictably is harder to ship than one that fails the same way every time.', href: '#' },
-    { tag: 'CODING AGENTS', img: 'https://picsum.photos/id/2/900/600', title: 'The Rise of Autonomous Coding Agents', desc: 'The shift to agents that open PRs unattended changes what code review is for.', href: '#' },
-    { tag: 'COST', img: 'https://picsum.photos/id/160/900/600', title: 'Cost Control for Always-On Agents', desc: "An agent that runs 24/7 doesn't have a token bill, it has a burn rate.", href: '#' },
+    { tag: 'ARCHITECTURE', img: 'https://picsum.photos/id/180/900/600', title: 'The Anatomy of an Agent Stack', desc: "Model, memory, tools, and orchestration aren't separate products, they're layers that fail differently.", href: '/posts/anatomy-of-an-agent-stack' },
+    { tag: 'MEMORY', img: 'https://picsum.photos/id/1005/900/600', title: 'Why Agents Need Long-Term Memory', desc: 'A context window is not a memory. The difference shows up the moment a user expects an agent to remember something.', href: '/posts/why-agents-need-long-term-memory' },
+    { tag: 'TOOL USE', img: 'https://picsum.photos/id/60/900/600', title: 'Tool Calling: Giving Agents Hands', desc: 'The gap between describing an action and taking it safely is mostly a schema-design problem.', href: '/posts/tool-calling-giving-agents-hands' },
+    { tag: 'MULTI-AGENT', img: 'https://picsum.photos/id/1015/900/600', title: "When One Agent Isn't Enough", desc: 'Splitting work across agents buys specialization and parallelism, and buys back coordination overhead.', href: '/posts/when-one-agent-isnt-enough' },
+    { tag: 'OBSERVABILITY', img: 'https://picsum.photos/id/96/900/600', title: 'Watching Agents Think', desc: 'Logs tell you what an agent did. Traces tell you why. Most incidents live in that gap.', href: '/posts/watching-agents-think' },
+    { tag: 'SAFETY', img: 'https://picsum.photos/id/201/900/600', title: 'Guardrails Without Gridlock', desc: "Every constraint is a tax on capability. The job is the smallest set of rails that stops what matters.", href: '/posts/guardrails-without-gridlock' },
+    { tag: 'RETRIEVAL', img: 'https://picsum.photos/id/48/900/600', title: 'Agentic RAG vs. Traditional RAG', desc: 'Traditional RAG retrieves once and answers. Agentic RAG decides whether to retrieve again, and from where.', href: '/posts/agentic-rag-vs-traditional-rag' },
+    { tag: 'EVALUATION', img: 'https://picsum.photos/id/119/900/600', title: 'Grading Agents on More Than Accuracy', desc: 'An agent that fails unpredictably is harder to ship than one that fails the same way every time.', href: '/posts/grading-agents-on-more-than-accuracy' },
+    { tag: 'CODING AGENTS', img: 'https://picsum.photos/id/2/900/600', title: 'The Rise of Autonomous Coding Agents', desc: 'The shift to agents that open PRs unattended changes what code review is for.', href: '/posts/rise-of-autonomous-coding-agents' },
+    { tag: 'COST', img: 'https://picsum.photos/id/160/900/600', title: 'Cost Control for Always-On Agents', desc: "An agent that runs 24/7 doesn't have a token bill, it has a burn rate.", href: '/posts/cost-control-for-always-on-agents' },
   ];
 
   return (
