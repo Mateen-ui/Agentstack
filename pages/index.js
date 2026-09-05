@@ -161,6 +161,23 @@ export default function Home() {
     { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: 'Here is what actually changed since plain autocomplete.', href: '/posts/what-is-an-ai-coding-agent' },
   ];
 
+  // Field Notes: shorter dispatches on the layers of an agent stack.
+  // NOTE: hrefs are set to '#' as placeholders since these posts don't exist yet.
+  // Once you publish each one, point the href at its real /posts/<slug> URL —
+  // that's what actually gets these indexed and crawlable as separate pages.
+  const fieldNotes = [
+    { tag: 'ARCHITECTURE', img: 'https://picsum.photos/id/180/900/600', title: 'The Anatomy of an Agent Stack', desc: "Model, memory, tools, and orchestration aren't separate products, they're layers that fail differently.", href: '#' },
+    { tag: 'MEMORY', img: 'https://picsum.photos/id/1005/900/600', title: 'Why Agents Need Long-Term Memory', desc: 'A context window is not a memory. The difference shows up the moment a user expects an agent to remember something.', href: '#' },
+    { tag: 'TOOL USE', img: 'https://picsum.photos/id/60/900/600', title: 'Tool Calling: Giving Agents Hands', desc: 'The gap between describing an action and taking it safely is mostly a schema-design problem.', href: '#' },
+    { tag: 'MULTI-AGENT', img: 'https://picsum.photos/id/1015/900/600', title: "When One Agent Isn't Enough", desc: 'Splitting work across agents buys specialization and parallelism, and buys back coordination overhead.', href: '#' },
+    { tag: 'OBSERVABILITY', img: 'https://picsum.photos/id/96/900/600', title: 'Watching Agents Think', desc: 'Logs tell you what an agent did. Traces tell you why. Most incidents live in that gap.', href: '#' },
+    { tag: 'SAFETY', img: 'https://picsum.photos/id/201/900/600', title: 'Guardrails Without Gridlock', desc: "Every constraint is a tax on capability. The job is the smallest set of rails that stops what matters.", href: '#' },
+    { tag: 'RETRIEVAL', img: 'https://picsum.photos/id/48/900/600', title: 'Agentic RAG vs. Traditional RAG', desc: 'Traditional RAG retrieves once and answers. Agentic RAG decides whether to retrieve again, and from where.', href: '#' },
+    { tag: 'EVALUATION', img: 'https://picsum.photos/id/119/900/600', title: 'Grading Agents on More Than Accuracy', desc: 'An agent that fails unpredictably is harder to ship than one that fails the same way every time.', href: '#' },
+    { tag: 'CODING AGENTS', img: 'https://picsum.photos/id/2/900/600', title: 'The Rise of Autonomous Coding Agents', desc: 'The shift to agents that open PRs unattended changes what code review is for.', href: '#' },
+    { tag: 'COST', img: 'https://picsum.photos/id/160/900/600', title: 'Cost Control for Always-On Agents', desc: "An agent that runs 24/7 doesn't have a token bill, it has a burn rate.", href: '#' },
+  ];
+
   return (
     <>
       <Head>
@@ -181,7 +198,7 @@ export default function Home() {
           </div>
           <div className="nav-links">
             <a href="#guides">Guides</a>
-            <a href="#about">About</a>
+            <a href="#notes">Field Notes</a>
             <a href="#" className="nav-cta">Subscribe</a>
           </div>
         </div>
@@ -194,7 +211,7 @@ export default function Home() {
           <p className="lede">Field-tested guides on Claude Code, Cursor, Windsurf, and the rest of the agentic coding stack, from first setup to production security.</p>
           <div className="hero-ctas">
             <a href="#guides" className="btn-primary">Read the guides</a>
-            <a href="#about" className="btn-secondary">Why AgentStack</a>
+            <a href="#notes" className="btn-secondary">Field Notes</a>
           </div>
         </div>
         <div className="hero-canvas-wrap">
@@ -225,7 +242,7 @@ export default function Home() {
             {posts.map((p, i) => (
               <a href={p.href} className="cube-card" data-glow={p.glow} style={{ '--i': i }} key={p.title}>
                 <div className="cube-face">
-                  <img className="cube-img" src={p.img} alt="" />
+                  <img className="cube-img" src={p.img} alt={p.title} loading="lazy" />
                   <div className="cube-overlay"></div>
                   <div className="cube-shine"></div>
                   <div className="cube-content">
@@ -243,30 +260,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="about">
+      <section className="section" id="notes">
         <div className="wrap">
           <div className="section-head">
             <div>
-              <h2>Why AgentStack exists</h2>
-              <p>Three things every guide here is held to.</p>
+              <h2>Field Notes</h2>
+              <p>Ten dispatches on the layers of an agent stack: memory, tools, orchestration, and the guardrails in between.</p>
             </div>
           </div>
-          <div className="principles">
-            <div className="principle">
-              <div className="idx">field-tested</div>
-              <h4>Run before written</h4>
-              <p>Every guide comes from actually running the agent against real repos, not reading the changelog and paraphrasing it.</p>
-            </div>
-            <div className="principle">
-              <div className="idx">no rankings</div>
-              <h4>Fit, not the best</h4>
-              <p>There is no single best agent. We tell you which one fits how you work, and say plainly where each one struggles.</p>
-            </div>
-            <div className="principle">
-              <div className="idx">security-first</div>
-              <h4>Shell access is a risk</h4>
-              <p>An agent that can run commands and touch your repo needs guardrails. We treat that as the default topic, not an afterthought.</p>
-            </div>
+
+          <div className="cube-grid">
+            {fieldNotes.map((n, i) => (
+              <a href={n.href} className="cube-card" data-glow={i % 2 === 0 ? 'amber' : 'blue'} style={{ '--i': i }} key={n.title}>
+                <article className="cube-face">
+                  <img className="cube-img" src={n.img} alt={n.title} loading="lazy" />
+                  <div className="cube-overlay"></div>
+                  <div className="cube-shine"></div>
+                  <div className="cube-content">
+                    <div className="pd">{n.tag}</div>
+                    <h4>{n.title}</h4>
+                    <p>{n.desc}</p>
+                  </div>
+                  <div className="cube-open">Open</div>
+                </article>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -276,7 +294,7 @@ export default function Home() {
           <p>(c) 2026 AgentStack. Built with Next.js.</p>
           <div className="fl">
             <a href="#guides">Guides</a>
-            <a href="#about">About</a>
+            <a href="#notes">Field Notes</a>
             <a href="#">RSS</a>
           </div>
         </div>
