@@ -154,11 +154,11 @@ export default function Home() {
   }, []);
 
   const posts = [
-    { date: '08.31.26', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'Agentic Coding Terms You will Actually Run Into (A Working Glossary)', desc: 'Agent loop, MCP, context window, sandboxing, defined in plain language.' },
-    { date: '08.29.26', img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Get More Out of Your AI Coding Agent: A Workflow Guide', desc: 'A handful of habits change the quality of what you get back completely.' },
-    { date: '08.24.26', img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'The Security Risks of AI Coding Agents Nobody Warned You About', desc: 'Slopsquatting, prompt injection, and secret leaks, and how to guard against each.' },
-    { date: '08.18.26', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Claude Code vs Cursor vs Windsurf vs Copilot', desc: 'A decision framework instead of another ranked list.' },
-    { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: 'Here is what actually changed since plain autocomplete.' },
+    { date: '08.31.26', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'Agentic Coding Terms You will Actually Run Into (A Working Glossary)', desc: 'Agent loop, MCP, context window, sandboxing, defined in plain language.', href: '/posts/agentic-coding-glossary' },
+    { date: '08.29.26', img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Get More Out of Your AI Coding Agent: A Workflow Guide', desc: 'A handful of habits change the quality of what you get back completely.', href: '/posts/ai-coding-agent-workflow-guide' },
+    { date: '08.24.26', img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'The Security Risks of AI Coding Agents Nobody Warned You About', desc: 'Slopsquatting, prompt injection, and secret leaks, and how to guard against each.', href: '/posts/ai-coding-agent-security-risks' },
+    { date: '08.18.26', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Claude Code vs Cursor vs Windsurf vs Copilot', desc: 'A decision framework instead of another ranked list.', href: '/posts/claude-code-vs-cursor-vs-windsurf-vs-copilot' },
+    { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: 'Here is what actually changed since plain autocomplete.', href: '/posts/what-is-an-ai-coding-agent' },
   ];
 
   return (
@@ -223,7 +223,7 @@ export default function Home() {
 
           <div className="cube-grid">
             {posts.map((p, i) => (
-              <a href="#" className="cube-card" data-glow={p.glow} style={{ '--i': i }} key={p.title}>
+              <a href={p.href} className="cube-card" data-glow={p.glow} style={{ '--i': i }} key={p.title}>
                 <div className="cube-face">
                   <img className="cube-img" src={p.img} alt="" />
                   <div className="cube-overlay"></div>
