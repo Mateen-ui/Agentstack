@@ -116,7 +116,6 @@ export default function Home() {
       edges: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[0,3],[1,4]],
     });
 
-    // cube tilt + click flash
     const cards = Array.from(document.querySelectorAll('.cube-card'));
     cards.forEach((card) => {
       const onMove = (e) => {
@@ -124,7 +123,7 @@ export default function Home() {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `rotateY(${px * 16}deg) rotateX(${-py * 16}deg) scale(1.03)`;
+        card.style.transform = 'rotateY(' + (px * 16) + 'deg) rotateX(' + (-py * 16) + 'deg) scale(1.03)';
       };
       const onLeave = () => { card.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)'; };
       const onClick = (e) => {
@@ -132,8 +131,8 @@ export default function Home() {
         const r = card.getBoundingClientRect();
         const flashEl = flashRef.current;
         if (flashEl) {
-          flashEl.style.setProperty('--fx', `${r.left + r.width / 2}px`);
-          flashEl.style.setProperty('--fy', `${r.top + r.height / 2}px`);
+          flashEl.style.setProperty('--fx', (r.left + r.width / 2) + 'px');
+          flashEl.style.setProperty('--fy', (r.top + r.height / 2) + 'px');
           flashEl.classList.remove('go');
           void flashEl.offsetWidth;
           flashEl.classList.add('go');
@@ -155,21 +154,133 @@ export default function Home() {
   }, []);
 
   const posts = [
-    { date: '08.31.26', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: "Agentic Coding Terms You'll Actually Run Into (A Working Glossary)", desc: 'Agent loop, MCP, context window, sandboxing — defined in plain language.' },
+    { date: '08.31.26', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'Agentic Coding Terms You will Actually Run Into (A Working Glossary)', desc: 'Agent loop, MCP, context window, sandboxing, defined in plain language.' },
     { date: '08.29.26', img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Get More Out of Your AI Coding Agent: A Workflow Guide', desc: 'A handful of habits change the quality of what you get back completely.' },
-    { date: '08.24.26', img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'The Security Risks of AI Coding Agents Nobody Warned You About', desc: 'Slopsquatting, prompt injection, and secret leaks — and how to guard against each.' },
-    { date: '08.18.26', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Claude Code vs. Cursor vs. Windsurf vs. Copilot', desc: "A decision framework instead of another ranked list." },
-    { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: "Here's what actually changed since plain autocomplete." },
+    { date: '08.24.26', img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'The Security Risks of AI Coding Agents Nobody Warned You About', desc: 'Slopsquatting, prompt injection, and secret leaks, and how to guard against each.' },
+    { date: '08.18.26', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Claude Code vs Cursor vs Windsurf vs Copilot', desc: 'A decision framework instead of another ranked list.' },
+    { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: 'Here is what actually changed since plain autocomplete.' },
   ];
 
   return (
     <>
       <Head>
-        <title>AgentStack — The AI Coding Agents Blog</title>
-        <meta name="description" content="Field-tested guides on Claude Code, Cursor, Windsurf, and the rest of the agentic coding stack — from setup to security." />
+        <title>AgentStack - The AI Coding Agents Blog</title>
+        <meta name="description" content="Field-tested guides on Claude Code, Cursor, Windsurf, and the rest of the agentic coding stack, from setup to security." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="bg-grid"></div>
-      <div
+      <div className="click-flash" ref={flashRef}></div>
+
+      <nav>
+        <div className="nav-inner">
+          <div className="logo">
+            <div className="logo-mark"><span></span><span></span><span></span></div>
+            AgentStack
+          </div>
+          <div className="nav-links">
+            <a href="#guides">Guides</a>
+            <a href="#about">About</a>
+            <a href="#" className="nav-cta">Subscribe</a>
+          </div>
+        </div>
+      </nav>
+
+      <section className="hero">
+        <div>
+          <div className="kicker"><span className="dot"></span> No hype. No affiliate rankings. Just field notes.</div>
+          <h1>Everything you need to actually <span className="accent">run</span> AI coding agents.</h1>
+          <p className="lede">Field-tested guides on Claude Code, Cursor, Windsurf, and the rest of the agentic coding stack, from first setup to production security.</p>
+          <div className="hero-ctas">
+            <a href="#guides" className="btn-primary">Read the guides</a>
+            <a href="#about" className="btn-secondary">Why AgentStack</a>
+          </div>
+        </div>
+        <div className="hero-canvas-wrap">
+          <canvas id="hero-canvas" ref={heroCanvasRef}></canvas>
+          <div className="hero-canvas-label"><span className="pulse"></span> the agent loop, visualized</div>
+        </div>
+      </section>
+
+      <div className="stat-strip">
+        <div className="wrap">
+          <div className="stat"><div className="num">5</div><div className="lbl">field guides</div></div>
+          <div className="stat"><div className="num">4</div><div className="lbl">agents covered</div></div>
+          <div className="stat"><div className="num">weekly</div><div className="lbl">new guides</div></div>
+          <div className="stat"><div className="num">0</div><div className="lbl">affiliate links</div></div>
+        </div>
+      </div>
+
+      <section className="section" id="guides">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <h2>Latest guides</h2>
+              <p>Ordered as published. Read the newest first, this stack changes fast.</p>
+            </div>
+          </div>
+
+          <div className="cube-grid">
+            {posts.map((p, i) => (
+              <a href="#" className="cube-card" data-glow={p.glow} style={{ '--i': i }} key={p.title}>
+                <div className="cube-face">
+                  <img className="cube-img" src={p.img} alt="" />
+                  <div className="cube-overlay"></div>
+                  <div className="cube-shine"></div>
+                  <div className="cube-content">
+                    <div className="pd">{p.date} - 4 min</div>
+                    <h4>{p.title}</h4>
+                    <p>{p.desc}</p>
+                  </div>
+                  <div className="cube-open">Open</div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <canvas id="feature-canvas" ref={featureCanvasRef} style={{ display: 'none' }}></canvas>
+        </div>
+      </section>
+
+      <section className="section" id="about">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <h2>Why AgentStack exists</h2>
+              <p>Three things every guide here is held to.</p>
+            </div>
+          </div>
+          <div className="principles">
+            <div className="principle">
+              <div className="idx">field-tested</div>
+              <h4>Run before written</h4>
+              <p>Every guide comes from actually running the agent against real repos, not reading the changelog and paraphrasing it.</p>
+            </div>
+            <div className="principle">
+              <div className="idx">no rankings</div>
+              <h4>Fit, not the best</h4>
+              <p>There is no single best agent. We tell you which one fits how you work, and say plainly where each one struggles.</p>
+            </div>
+            <div className="principle">
+              <div className="idx">security-first</div>
+              <h4>Shell access is a risk</h4>
+              <p>An agent that can run commands and touch your repo needs guardrails. We treat that as the default topic, not an afterthought.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div className="wrap">
+          <p>(c) 2026 AgentStack. Built with Next.js.</p>
+          <div className="fl">
+            <a href="#guides">Guides</a>
+            <a href="#about">About</a>
+            <a href="#">RSS</a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
