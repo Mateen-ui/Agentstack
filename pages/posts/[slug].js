@@ -2,14 +2,17 @@ import { format } from "date-fns";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import { getAllPostSlugs, getPostData } from "../../lib/posts";
-
 export default function Post({ postData }) {
+  const keywords = postData.seo
+    ? [postData.seo.primary_keyword, ...(postData.seo.secondary_keywords || [])]
+        .filter(Boolean)
+        .join(", ")
+    : undefined;
   return (
-    <Layout title={postData.title} description={postData.excerpt}>
+    <Layout title={postData.title} description={postData.excerpt} keywords={keywords}>
       <Link href="/" className="text-sm font-mono text-muted hover:text-accent transition-colors">
         ← all guides
       </Link>
-
       <article className="mt-6">
         {postData.tags && postData.tags.length > 0 && (
           <div className="flex gap-2 mb-4">
@@ -37,7 +40,6 @@ export default function Post({ postData }) {
     </Layout>
   );
 }
-
 export async function getStaticPaths() {
   const paths = getAllPostSlugs();
   return {
@@ -45,7 +47,6 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.slug);
   return {
