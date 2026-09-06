@@ -1,14 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import LogoMark from "./LogoMark";
-
 const SITE_TITLE = "AgentStack";
 const SITE_DESCRIPTION =
   "A field guide to AI coding agents — how they work, which one to use, and how to run them without breaking production.";
-
-export default function Layout({ children, title, description }) {
+export default function Layout({ children, title, description, keywords }) {
   const pageTitle = title ? `${title} — ${SITE_TITLE}` : `${SITE_TITLE} — The AI Coding Agents Blog`;
-
   return (
     <div
       className="min-h-screen"
@@ -23,11 +20,11 @@ export default function Layout({ children, title, description }) {
         <Head>
           <title>{pageTitle}</title>
           <meta name="description" content={description || SITE_DESCRIPTION} />
+          {keywords && <meta name="keywords" content={keywords} />}
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
           <meta name="google-site-verification" content="siVuAlWtY2uDcJtA_iRN1aO8huUyJsADHnEGHCoYQJ0" />
         </Head>
-
         <header className="border-b border-line">
           <div className="max-w-3xl mx-auto px-5 py-5 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5 group">
@@ -46,9 +43,7 @@ export default function Layout({ children, title, description }) {
             </nav>
           </div>
         </header>
-
         <main className="flex-1 max-w-3xl mx-auto px-5 py-12 w-full">{children}</main>
-
         <footer className="border-t border-line">
           <div className="max-w-3xl mx-auto px-5 py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-muted">
             <span>© {new Date().getFullYear()} {SITE_TITLE}. Built with Next.js.</span>
