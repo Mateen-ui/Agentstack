@@ -2,6 +2,7 @@
 title: "Watching Agents Think"
 slug: "watching-agents-think"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "Logs tell you what an agent did. Traces tell you why. Most production incidents live in the gap between those two."
 tags: ["observability", "tracing", "production"]
 seo:

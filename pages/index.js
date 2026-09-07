@@ -1,8 +1,33 @@
 import Head from 'next/head';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { getSortedPostsData } from '../lib/posts';
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, ORGANIZATION } from '../lib/site';
 
-export default function Home() {
+// Curated art for the launch set of posts. New posts that aren't in
+// this map fall back to FALLBACK_IMG below, so adding a post never
+// breaks the homepage -- it just won't have bespoke art until you add
+// an entry here.
+const IMG_MAP = {
+  'agentic-coding-glossary': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80',
+  'ai-coding-agent-workflow-guide': 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80',
+  'ai-coding-agent-security-risks': 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80',
+  'claude-code-vs-cursor-vs-windsurf-vs-copilot': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+  'what-is-an-ai-coding-agent': 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80',
+  'anatomy-of-an-agent-stack': 'https://picsum.photos/id/180/900/600',
+  'why-agents-need-long-term-memory': 'https://picsum.photos/id/1005/900/600',
+  'tool-calling-giving-agents-hands': 'https://picsum.photos/id/60/900/600',
+  'when-one-agent-isnt-enough': 'https://picsum.photos/id/1015/900/600',
+  'watching-agents-think': 'https://picsum.photos/id/96/900/600',
+  'guardrails-without-gridlock': 'https://picsum.photos/id/201/900/600',
+  'agentic-rag-vs-traditional-rag': 'https://picsum.photos/id/48/900/600',
+  'grading-agents-on-more-than-accuracy': 'https://picsum.photos/id/119/900/600',
+  'rise-of-autonomous-coding-agents': 'https://picsum.photos/id/2/900/600',
+  'cost-control-for-always-on-agents': 'https://picsum.photos/id/160/900/600',
+};
+const FALLBACK_IMG = 'https://picsum.photos/id/119/900/600';
+
+export default function Home({ guidePosts, fieldNotePosts }) {
   const heroCanvasRef = useRef(null);
   const featureCanvasRef = useRef(null);
   const flashRef = useRef(null);
@@ -153,36 +178,47 @@ export default function Home() {
     return () => cleanupFns.forEach((fn) => fn());
   }, []);
 
-  const posts = [
-    { date: '08.31.26', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'Agentic Coding Terms You will Actually Run Into (A Working Glossary)', desc: 'Agent loop, MCP, context window, sandboxing, defined in plain language.', href: '/posts/agentic-coding-glossary' },
-    { date: '08.29.26', img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Get More Out of Your AI Coding Agent: A Workflow Guide', desc: 'A handful of habits change the quality of what you get back completely.', href: '/posts/ai-coding-agent-workflow-guide' },
-    { date: '08.24.26', img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'The Security Risks of AI Coding Agents Nobody Warned You About', desc: 'Slopsquatting, prompt injection, and secret leaks, and how to guard against each.', href: '/posts/ai-coding-agent-security-risks' },
-    { date: '08.18.26', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', glow: 'blue', title: 'Claude Code vs Cursor vs Windsurf vs Copilot', desc: 'A decision framework instead of another ranked list.', href: '/posts/claude-code-vs-cursor-vs-windsurf-vs-copilot' },
-    { date: '08.10.26', img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=900&q=80', glow: 'amber', title: 'What Is an AI Coding Agent? A Plain-English Guide', desc: 'Here is what actually changed since plain autocomplete.', href: '/posts/what-is-an-ai-coding-agent' },
-  ];
+  const posts = guidePosts;
+  const fieldNotes = fieldNotePosts;
 
-  // Field Notes: shorter dispatches on the layers of an agent stack.
-  // Each href below matches a published article — see /posts/<slug>.md in
-  // this delivery. Wire these slugs into your post-rendering route (or send
-  // Claude your existing pages/posts/[slug] template) to make them live.
-  const fieldNotes = [
-    { tag: 'ARCHITECTURE', img: 'https://picsum.photos/id/180/900/600', title: 'The Anatomy of an Agent Stack', desc: "Model, memory, tools, and orchestration aren't separate products, they're layers that fail differently.", href: '/posts/anatomy-of-an-agent-stack' },
-    { tag: 'MEMORY', img: 'https://picsum.photos/id/1005/900/600', title: 'Why Agents Need Long-Term Memory', desc: 'A context window is not a memory. The difference shows up the moment a user expects an agent to remember something.', href: '/posts/why-agents-need-long-term-memory' },
-    { tag: 'TOOL USE', img: 'https://picsum.photos/id/60/900/600', title: 'Tool Calling: Giving Agents Hands', desc: 'The gap between describing an action and taking it safely is mostly a schema-design problem.', href: '/posts/tool-calling-giving-agents-hands' },
-    { tag: 'MULTI-AGENT', img: 'https://picsum.photos/id/1015/900/600', title: "When One Agent Isn't Enough", desc: 'Splitting work across agents buys specialization and parallelism, and buys back coordination overhead.', href: '/posts/when-one-agent-isnt-enough' },
-    { tag: 'OBSERVABILITY', img: 'https://picsum.photos/id/96/900/600', title: 'Watching Agents Think', desc: 'Logs tell you what an agent did. Traces tell you why. Most incidents live in that gap.', href: '/posts/watching-agents-think' },
-    { tag: 'SAFETY', img: 'https://picsum.photos/id/201/900/600', title: 'Guardrails Without Gridlock', desc: "Every constraint is a tax on capability. The job is the smallest set of rails that stops what matters.", href: '/posts/guardrails-without-gridlock' },
-    { tag: 'RETRIEVAL', img: 'https://picsum.photos/id/48/900/600', title: 'Agentic RAG vs. Traditional RAG', desc: 'Traditional RAG retrieves once and answers. Agentic RAG decides whether to retrieve again, and from where.', href: '/posts/agentic-rag-vs-traditional-rag' },
-    { tag: 'EVALUATION', img: 'https://picsum.photos/id/119/900/600', title: 'Grading Agents on More Than Accuracy', desc: 'An agent that fails unpredictably is harder to ship than one that fails the same way every time.', href: '/posts/grading-agents-on-more-than-accuracy' },
-    { tag: 'CODING AGENTS', img: 'https://picsum.photos/id/2/900/600', title: 'The Rise of Autonomous Coding Agents', desc: 'The shift to agents that open PRs unattended changes what code review is for.', href: '/posts/rise-of-autonomous-coding-agents' },
-    { tag: 'COST', img: 'https://picsum.photos/id/160/900/600', title: 'Cost Control for Always-On Agents', desc: "An agent that runs 24/7 doesn't have a token bill, it has a burn rate.", href: '/posts/cost-control-for-always-on-agents' },
-  ];
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+  };
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: ORGANIZATION.name,
+    url: ORGANIZATION.url,
+    logo: ORGANIZATION.logo,
+  };
 
   return (
     <>
       <Head>
         <title>AgentStack - The AI Coding Agents Blog</title>
-        <meta name="description" content="Field-tested guides on Claude Code, Cursor, Windsurf, and the rest of the agentic coding stack, from setup to security." />
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <link rel="canonical" href={SITE_URL + '/'} />
+        <meta name="google-site-verification" content="siVuAlWtY2uDcJtA_iRN1aO8huUyJsADHnEGHCoYQJ0" />
+
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AgentStack - The AI Coding Agents Blog" />
+        <meta property="og:description" content={SITE_DESCRIPTION} />
+        <meta property="og:url" content={SITE_URL + '/'} />
+        <meta property="og:image" content={SITE_URL + '/favicon.svg'} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AgentStack - The AI Coding Agents Blog" />
+        <meta name="twitter:description" content={SITE_DESCRIPTION} />
+        <meta name="twitter:image" content={SITE_URL + '/favicon.svg'} />
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </Head>
@@ -246,7 +282,7 @@ export default function Home() {
                   <div className="cube-overlay"></div>
                   <div className="cube-shine"></div>
                   <div className="cube-content">
-                    <div className="pd">{p.date} - 4 min</div>
+                    <div className="pd">{p.date} - {p.readingTime} min</div>
                     <h4>{p.title}</h4>
                     <p>{p.desc}</p>
                   </div>
@@ -301,4 +337,39 @@ export default function Home() {
       </footer>
     </>
   );
+}
+
+function formatShortDate(dateStr) {
+  const d = new Date(dateStr);
+  const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(d.getUTCDate()).padStart(2, '0');
+  const yy = String(d.getUTCFullYear()).slice(-2);
+  return `${mm}.${dd}.${yy}`;
+}
+
+export async function getStaticProps() {
+  const allPosts = getSortedPostsData();
+
+  const toCard = (post, i) => ({
+    date: formatShortDate(post.date),
+    img: IMG_MAP[post.slug] || FALLBACK_IMG,
+    glow: i % 2 === 0 ? 'amber' : 'blue',
+    tag: (post.tags && post.tags[0] ? post.tags[0] : 'guide').toUpperCase(),
+    title: post.title,
+    desc: post.excerpt,
+    href: `/posts/${post.slug}`,
+    readingTime: post.readingTime,
+  });
+
+  const guidePosts = allPosts
+    .filter((p) => p.section === 'guide')
+    .map(toCard);
+
+  const fieldNotePosts = allPosts
+    .filter((p) => p.section !== 'guide')
+    .map(toCard);
+
+  return {
+    props: { guidePosts, fieldNotePosts },
+  };
 }

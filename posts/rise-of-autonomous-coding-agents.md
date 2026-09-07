@@ -2,6 +2,7 @@
 title: "The Rise of Autonomous Coding Agents"
 slug: "rise-of-autonomous-coding-agents"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "The shift from autocomplete to agents that open PRs unattended changes what code review is for — and who's actually reviewing it."
 tags: ["coding-agents", "code-review", "developer-tools"]
 seo:

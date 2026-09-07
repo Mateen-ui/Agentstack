@@ -2,6 +2,7 @@
 title: "When One Agent Isn't Enough"
 slug: "when-one-agent-isnt-enough"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "Splitting work across agents buys specialization and parallelism — and buys back coordination overhead you didn't have before."
 tags: ["multi-agent", "orchestration", "frameworks"]
 seo:

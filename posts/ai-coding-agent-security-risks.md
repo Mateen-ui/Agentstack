@@ -1,6 +1,7 @@
 ---
 title: "The Security Risks of AI Coding Agents Nobody Warned You About"
 date: "2026-08-24"
+section: "guide"
 excerpt: "An agent with shell access and repo permissions can do real damage in seconds. Slopsquatting, prompt injection, and secret leaks — and how to guard against each."
 tags: ["security"]
 ---

@@ -66,3 +66,26 @@ Standard Next.js app — deploys free on Vercel (connect your GitHub repo at ver
 ## Tech stack
 
 Next.js · Tailwind CSS · gray-matter + remark (Markdown parsing) · reading-time
+
+## SEO technical foundations (P0)
+
+Implemented against the roadmap's Technical Checklist:
+
+- Fixed `public/robots.txt` (was emitting garbled text instead of a `Sitemap:` line).
+- Centralized site config in `lib/site.js` — one place to change the domain, site name, and default author.
+- Canonical URLs, Open Graph, and Twitter Card tags on every page (`components/Layout.js`; homepage sets its own since it doesn't use `Layout`).
+- JSON-LD structured data: `Article` + `BreadcrumbList` on every post, `WebSite` + `Organization` on the homepage.
+- Author byline + bio system (`lib/site.js` → `DEFAULT_AUTHOR`, shown via `components/AuthorByline.js`). **Replace the placeholder "AgentStack Editorial Team" with a real named author and factual credentials** once you have one — don't invent one, Google's guidance specifically wants verifiable expertise.
+- Explicit `updated` (last-verified) date per post, separate from `date` (published) — falls back to `date` if unset. Only bump `updated` in frontmatter when you've actually re-checked the content.
+- Every post now declares `section: "guide" | "field-note"` in frontmatter — this drives which homepage row it appears in, replacing the old hardcoded arrays so new posts show up automatically.
+- Internal linking: `Breadcrumbs` component on post pages, plus a `getRelatedPosts()` helper (`lib/posts.js`) that surfaces posts sharing tags at the bottom of each article.
+- Trust/E-E-A-T pages: `/how-we-test` (methodology — currently a template, fill in specifics once your benchmark process is running) and `/editorial-policy` (independence, correction handling), linked from every page's footer and from `/about`.
+- `sitemap.xml` now uses each post's `updated` date for `<lastmod>` and includes the new trust pages.
+- Removed a stray duplicate image (`bg-network (1).jpg`) from `public/`.
+
+### Still open from the roadmap (not code-level, or needs a decision from you)
+
+- **Custom domain**: site is still on `agentstack-vert.vercel.app`. Once you buy/point a domain, update `NEXT_PUBLIC_SITE_URL` (or the fallback in `lib/site.js`) and the hardcoded URL in `public/robots.txt`.
+- **Real author identity**: see above — the byline currently reads "AgentStack Editorial Team" everywhere.
+- **Hub pages** (`/guides/ai-coding-agents`, `/guides/claude-code`, etc.), the comparison/benchmark content cluster, and the two interactive tools from the Content Map are net-new content, not technical fixes — next phase.
+- **Core Web Vitals**: can't be measured until this is deployed and live; the homepage does hotlink several Unsplash/Picsum images which is worth revisiting for LCP once you have real analytics.

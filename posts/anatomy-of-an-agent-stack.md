@@ -2,6 +2,7 @@
 title: "The Anatomy of an Agent Stack"
 slug: "anatomy-of-an-agent-stack"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "Model, memory, tools, and orchestration aren't separate products — they're layers that fail differently. A map of where each one earns its place."
 tags: ["architecture", "agent-stack", "orchestration"]
 seo:

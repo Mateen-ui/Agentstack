@@ -2,6 +2,7 @@
 title: "Guardrails Without Gridlock"
 slug: "guardrails-without-gridlock"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "Every constraint you add is a tax on capability. The job isn't maximum safety — it's the smallest set of rails that stops the failures that matter."
 tags: ["safety", "guardrails", "security"]
 seo:

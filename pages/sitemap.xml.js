@@ -1,26 +1,30 @@
 import { getSortedPostsData } from "../lib/posts";
+import { SITE_URL } from "../lib/site";
 
-const SITE_URL = "https://agentstack-vert.vercel.app";
+const STATIC_PAGES = [
+  { path: "/", changefreq: "weekly", priority: "1.0" },
+  { path: "/about", changefreq: "monthly", priority: "0.5" },
+  { path: "/how-we-test", changefreq: "monthly", priority: "0.5" },
+  { path: "/editorial-policy", changefreq: "yearly", priority: "0.3" },
+];
 
 function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${STATIC_PAGES.map(
+    (p) => `
   <url>
-    <loc>${SITE_URL}/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${SITE_URL}/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+    <loc>${SITE_URL}${p.path}</loc>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`
+  ).join("")}
   ${posts
     .map(
-      ({ slug, date }) => `
+      ({ slug, updated }) => `
   <url>
     <loc>${SITE_URL}/posts/${slug}</loc>
-    <lastmod>${new Date(date).toISOString()}</lastmod>
+    <lastmod>${new Date(updated).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`
@@ -29,7 +33,7 @@ function generateSiteMap(posts) {
 </urlset>`;
 }
 
-// This page is never rendered directly — getServerSideProps
+// This page is never rendered directly -- getServerSideProps
 // intercepts the request and returns raw XML instead.
 export default function SiteMap() {
   return null;

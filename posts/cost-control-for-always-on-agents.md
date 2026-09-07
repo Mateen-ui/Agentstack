@@ -2,6 +2,7 @@
 title: "Cost Control for Always-On Agents"
 slug: "cost-control-for-always-on-agents"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "An agent that runs 24/7 doesn't have a token bill, it has a burn rate. The line between the two is caching, routing, and knowing when to stop."
 tags: ["cost-optimization", "token-costs", "production"]
 seo:

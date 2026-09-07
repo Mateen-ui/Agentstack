@@ -1,6 +1,7 @@
 ---
 title: "Agentic Coding Terms You'll Actually Run Into (A Working Glossary)"
 date: "2026-08-31"
+section: "guide"
 excerpt: "Agent loop, MCP, context window, sandboxing — the vocabulary that shows up in every tool's docs, defined in plain language."
 tags: ["fundamentals", "reference"]
 ---

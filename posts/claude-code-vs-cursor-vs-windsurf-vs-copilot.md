@@ -1,6 +1,7 @@
 ---
 title: "Claude Code vs. Cursor vs. Windsurf vs. Copilot: How to Actually Choose"
 date: "2026-08-18"
+section: "guide"
 excerpt: "There's no single best agent — there's a best agent for how you work. Here's a decision framework instead of another ranked list."
 tags: ["comparison", "tools"]
 ---

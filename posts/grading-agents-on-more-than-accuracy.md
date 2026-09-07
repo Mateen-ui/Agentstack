@@ -2,6 +2,7 @@
 title: "Grading Agents on More Than Accuracy"
 slug: "grading-agents-on-more-than-accuracy"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "An agent that's 95% accurate but unpredictable about the other 5% is harder to ship than one that's 85% accurate and fails the same way every time."
 tags: ["evaluation", "benchmarks", "reliability"]
 seo:

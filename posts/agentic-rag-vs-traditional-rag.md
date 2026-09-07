@@ -2,6 +2,7 @@
 title: "Agentic RAG vs. Traditional RAG"
 slug: "agentic-rag-vs-traditional-rag"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "Traditional RAG retrieves once and answers. Agentic RAG decides whether to retrieve again, from where, and whether the answer is even worth trusting."
 tags: ["RAG", "retrieval", "agentic-rag"]
 seo:

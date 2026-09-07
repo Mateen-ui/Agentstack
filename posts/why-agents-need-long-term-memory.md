@@ -2,6 +2,7 @@
 title: "Why Agents Need Long-Term Memory"
 slug: "why-agents-need-long-term-memory"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "A context window is not a memory. The difference shows up the moment a user expects an agent to remember something from three sessions ago."
 tags: ["memory", "agent-stack", "personalization"]
 seo:

@@ -2,6 +2,7 @@
 title: "Tool Calling: Giving Agents Hands"
 slug: "tool-calling-giving-agents-hands"
 date: "2026-09-05"
+section: "field-note"
 excerpt: "The gap between an agent that can describe an action and one that can take it safely is mostly a schema-design problem, not a model problem."
 tags: ["tool-use", "function-calling", "MCP"]
 seo:

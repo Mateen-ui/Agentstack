@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-your-domain.com" with "agentstack-vert.vercel.app
+Sitemap: https://agentstack-vert.vercel.app/sitemap.xml

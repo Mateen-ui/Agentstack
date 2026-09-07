@@ -1,6 +1,7 @@
 ---
 title: "Get More Out of Your AI Coding Agent: A Practical Workflow Guide"
 date: "2026-08-29"
+section: "guide"
 excerpt: "Most of the frustration people have with AI agents comes down to a handful of habits. Fix these and the quality of what you get back changes completely."
 tags: ["workflow", "productivity"]
 ---

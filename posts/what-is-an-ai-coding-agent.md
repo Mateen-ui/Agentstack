@@ -1,6 +1,7 @@
 ---
 title: "What Is an AI Coding Agent? A Plain-English Guide"
 date: "2026-08-10"
+section: "guide"
 excerpt: "Autocomplete predicts your next line. An agent plans the task, edits the files, runs the tests, and iterates on its own. Here's what actually changed."
 tags: ["fundamentals"]
 ---
