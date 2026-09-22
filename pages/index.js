@@ -41,6 +41,10 @@ const IMG_MAP = {
   'cursor-rules': 'https://picsum.photos/id/40/900/600',
   'cursor-mcp': 'https://picsum.photos/id/42/900/600',
   'cursor-security': 'https://picsum.photos/id/43/900/600',
+  // Codex cluster
+  'openai-codex': 'https://picsum.photos/id/46/900/600',
+  'codex-cli': 'https://picsum.photos/id/49/900/600',
+  'codex-vs-claude-code': 'https://picsum.photos/id/51/900/600',
 };
 const FALLBACK_IMG = 'https://picsum.photos/id/119/900/600';
 
