@@ -24,6 +24,23 @@ const IMG_MAP = {
   'grading-agents-on-more-than-accuracy': 'https://picsum.photos/id/119/900/600',
   'rise-of-autonomous-coding-agents': 'https://picsum.photos/id/2/900/600',
   'cost-control-for-always-on-agents': 'https://picsum.photos/id/160/900/600',
+  // Claude Code cluster
+  'claude-code': 'https://picsum.photos/id/0/900/600',
+  'claude-code-install': 'https://picsum.photos/id/3/900/600',
+  'claude-code-tutorial': 'https://picsum.photos/id/4/900/600',
+  'claude-code-commands': 'https://picsum.photos/id/6/900/600',
+  'claude-code-skills': 'https://picsum.photos/id/9/900/600',
+  'claude-code-hooks': 'https://picsum.photos/id/20/900/600',
+  'claude-code-mcp': 'https://picsum.photos/id/21/900/600',
+  'claude-code-subagents': 'https://picsum.photos/id/26/900/600',
+  'claude-code-security': 'https://picsum.photos/id/28/900/600',
+  // Cursor cluster
+  'cursor': 'https://picsum.photos/id/30/900/600',
+  'cursor-tutorial': 'https://picsum.photos/id/36/900/600',
+  'cursor-agent-mode': 'https://picsum.photos/id/37/900/600',
+  'cursor-rules': 'https://picsum.photos/id/40/900/600',
+  'cursor-mcp': 'https://picsum.photos/id/42/900/600',
+  'cursor-security': 'https://picsum.photos/id/43/900/600',
 };
 const FALLBACK_IMG = 'https://picsum.photos/id/119/900/600';
 
