@@ -45,6 +45,11 @@ const IMG_MAP = {
   'openai-codex': 'https://picsum.photos/id/46/900/600',
   'codex-cli': 'https://picsum.photos/id/49/900/600',
   'codex-vs-claude-code': 'https://picsum.photos/id/51/900/600',
+  // GitHub Copilot cluster
+  'github-copilot': 'https://picsum.photos/id/55/900/600',
+  'github-copilot-agent-mode': 'https://picsum.photos/id/56/900/600',
+  'github-copilot-coding-agent': 'https://picsum.photos/id/58/900/600',
+  'github-copilot-mcp': 'https://picsum.photos/id/59/900/600',
 };
 const FALLBACK_IMG = 'https://picsum.photos/id/119/900/600';
 
