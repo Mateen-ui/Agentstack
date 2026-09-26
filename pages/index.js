@@ -50,6 +50,8 @@ const IMG_MAP = {
   'github-copilot-agent-mode': 'https://picsum.photos/id/56/900/600',
   'github-copilot-coding-agent': 'https://picsum.photos/id/58/900/600',
   'github-copilot-mcp': 'https://picsum.photos/id/59/900/600',
+  // OpenCode
+  'opencode': 'https://picsum.photos/id/62/900/600',
 };
 const FALLBACK_IMG = 'https://picsum.photos/id/119/900/600';
 
